@@ -1,2 +1,2 @@
 # CryptoStat
-Site de statistiques de cryptomonnaies
+Site de statistiques de crypto-monnaies
