@@ -1,0 +1,23 @@
+.orange {
+    color: #ff8001;
+}
+
+.blue {
+    color: #1e6af6;
+}
+
+.bg-orange {
+    background-color: #ff8001 !important;
+    color: white !important;
+}
+
+.bg-blue {
+    background-color: #1e6af6 !important;
+    color: white !important;
+}
+
+.btn-blue {
+    background-color: #1e6af6 !important;
+    color: white !important;
+    
+}
