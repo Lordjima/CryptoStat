@@ -1,10 +1,23 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const bodyParser = require('body-parser');
+const path = require('path');
 
-app.get('/', function (req, res) {
-  res.send('Hello World!')
-})
+const app = express();
+const port = 3000;
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
-})
+const {getIndexPage} = require('./routes/index');
+
+// CONFIG
+app.set('port', port); // set express to use this port
+app.set('views', __dirname + '/views'); // set express to look in this folder to render our view
+app.set('view engine', 'ejs'); // configure template engine
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json()); // parse form data client
+app.use(express.static(path.join(__dirname, '/'))); // configure express to use public folder
+
+app.get('/', getIndexPage);
+
+// LISTEN
+app.listen(port, () => {
+    console.log(`Server running on port: ${port}`);
+});
