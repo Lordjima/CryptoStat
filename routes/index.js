@@ -3,7 +3,8 @@ module.exports = {
         res.render('index.ejs', {
             title: "CryptoStat | Accueil",
             subTitle: "Accueil",
-            subTitleAbout: "A propos"
+            subTitleAbout: "A propos",
+            subTitleContact: "Contact"
         });
     }
 };
