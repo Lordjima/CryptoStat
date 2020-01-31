@@ -2,10 +2,9 @@
 <% include struct/navbar.ejs %>
 <div class="container-fluid margin-top text-center">
     <div class="row">
-        <div class="col-sm"></div>
-        <div class="col-sm-10 my-4">
+        <div class="col-sm-7 my-4">
             <div class="card">
-                <h5 class="card-header h5 bg-blue">BTC / USD</h5>
+                <h5 class="card-header h5 bg-blue">Bitfinex (BTC/USD)</h5>
                 <div class="card-body">
                     <table class="table table-hover table-bordered">
                         <thead>
@@ -20,15 +19,15 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% for( var index in data ){ %>
+                            <% for( var index in dataBitfinex ){ %>
                             <tr>
-                                <th scope="row"><%= new Date(data[index][0]).getDate() %>/<%= ((new Date(data[index][0]).getMonth() + 1 < 10) ? "0" + (new Date(data[index][0]).getMonth() + 1) : (new Date(data[index][0]).getMonth() + 1)) %></th>
-                                <td><%= new Date(data[index][0]).getHours() %>:<%= ((new Date(data[index][0]).getMinutes() < 10) ? "0" + new Date(data[index][0]).getMinutes() : new Date(data[index][0]).getMinutes()) %></td>
-                                <td><%= data[index][1] %></td>
-                                <td><%= data[index][2] %></td>
-                                <td><%= data[index][3] %></td>
-                                <td><%= data[index][4] %></td>
-                                <td><%= data[index][5] %></td>
+                                <th scope="row"><%= new Date(dataBitfinex[index][0]).getDate() %>/<%= ((new Date(dataBitfinex[index][0]).getMonth() + 1 < 10) ? "0" + (new Date(dataBitfinex[index][0]).getMonth() + 1) : (new Date(dataBitfinex[index][0]).getMonth() + 1)) %></th>
+                                <td><%= ((new Date(dataBitfinex[index][0]).getHours() < 10) ? "0" + new Date(dataBitfinex[index][0]).getHours() : new Date(dataBitfinex[index][0]).getHours()) %>:<%= ((new Date(dataBitfinex[index][0]).getMinutes() < 10) ? "0" + new Date(dataBitfinex[index][0]).getMinutes() : new Date(dataBitfinex[index][0]).getMinutes()) %></td>
+                                <td><%= dataBitfinex[index][1] %></td>
+                                <td><%= dataBitfinex[index][2] %></td>
+                                <td><%= dataBitfinex[index][3] %></td>
+                                <td><%= dataBitfinex[index][4] %></td>
+                                <td><%= dataBitfinex[index][5] %></td>
                             </tr>
                             <% } %>
                         </tbody>
@@ -36,7 +35,33 @@
                 </div>
             </div> 
         </div>
-        <div class="col-sm"></div>
+        <div class="col-sm-5 my-4">
+            <div class="card">
+                <h5 class="card-header h5 bg-blue">Kraken (BTC/USD)</h5>
+                <div class="card-body">
+                    <table class="table table-hover table-bordered">
+                        <thead>
+                            <tr>
+                                <th scope="col">Price</th>
+                                <th scope="col">Volume</th>
+                                <th scope="col">Time</th>
+                                <th scope="col">Buy/Sell</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for( var index in dataKraken ){ %>
+                            <tr>
+                                <th scope="row"><%= dataKraken[index][0] %></th>
+                                <td><%= dataKraken[index][1] %></td>
+                                <td><%= new Date(dataKraken[index][2]) %></td>
+                                <td><%= dataKraken[index][3] %></td>
+                            </tr>
+                            <% } %>
+                        </tbody>
+                    </table>
+                </div>
+            </div> 
+        </div>
     </div>
 </div>
 <% include struct/footer.ejs %>
