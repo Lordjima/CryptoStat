@@ -7,11 +7,11 @@ module.exports = {
 
         let config = {method: "GET", headers: { accept: "application/json" } };
 
-        https.get(urlBitfinex+urlTemp, config, function (res1) {
+        https.get(urlBitfinex + urlTemp, config, function (res1) {
             let data = "";
 
             res1.on('data', function(content){
-                data+= content;
+                data += content;
             });
 
             res1.on("end", function () {
