@@ -1,5 +1,6 @@
-<% include struct/header.ejs %>
-<% include struct/navbar.ejs %>
+<% var rootPath = './'; %>
+<%- include(rootPath + 'struct/header.ejs') -%>
+<%- include(rootPath + 'struct/navbar.ejs') -%>
 <div class="container-fluid margin-top text-center">
     <div class="row">
         <div class="col-sm-7 my-4">
@@ -21,13 +22,13 @@
                         <tbody>
                             <% for( var index in dataBitfinex ){ %>
                             <tr>
-                                <th scope="row"><%= new Date(dataBitfinex[index][0]).getDate() %>/<%= ((new Date(dataBitfinex[index][0]).getMonth() + 1 < 10) ? "0" + (new Date(dataBitfinex[index][0]).getMonth() + 1) : (new Date(dataBitfinex[index][0]).getMonth() + 1)) %></th>
-                                <td><%= ((new Date(dataBitfinex[index][0]).getHours() < 10) ? "0" + new Date(dataBitfinex[index][0]).getHours() : new Date(dataBitfinex[index][0]).getHours()) %>:<%= ((new Date(dataBitfinex[index][0]).getMinutes() < 10) ? "0" + new Date(dataBitfinex[index][0]).getMinutes() : new Date(dataBitfinex[index][0]).getMinutes()) %></td>
-                                <td><%= dataBitfinex[index][1] %></td>
-                                <td><%= dataBitfinex[index][2] %></td>
-                                <td><%= dataBitfinex[index][3] %></td>
-                                <td><%= dataBitfinex[index][4] %></td>
-                                <td><%= dataBitfinex[index][5] %></td>
+                                <th scope="row"><%= new Date(dataBitfinex[index]["Timestamp"]).getDate() %>/<%= ((new Date(dataBitfinex[index]["Timestamp"]).getMonth() + 1 < 10) ? "0" + (new Date(dataBitfinex[index]["Timestamp"]).getMonth() + 1) : (new Date(dataBitfinex[index]["Timestamp"]).getMonth() + 1)) %></th>
+                                <td><%= ((new Date(dataBitfinex[index]["Timestamp"]).getHours() < 10) ? "0" + new Date(dataBitfinex[index]["Timestamp"]).getHours() : new Date(dataBitfinex[index]["Timestamp"]).getHours()) %>:<%= ((new Date(dataBitfinex[index]["Timestamp"]).getMinutes() < 10) ? "0" + new Date(dataBitfinex[index]["Timestamp"]).getMinutes() : new Date(dataBitfinex[index]["Timestamp"]).getMinutes()) %></td>
+                                <td><%= dataBitfinex[index]["OpenPrice"] %></td>
+                                <td><%= dataBitfinex[index]["ClosePrice"] %></td>
+                                <td><%= dataBitfinex[index]["Highest"] %></td>
+                                <td><%= dataBitfinex[index]["Lowest"] %></td>
+                                <td><%= dataBitfinex[index]["Volume"] %></td>
                             </tr>
                             <% } %>
                         </tbody>
@@ -49,12 +50,12 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <% for( var index in dataKraken ){ %>
+                            <% for( var indexK in dataKraken ){ %>
                             <tr>
-                                <th scope="row"><%= dataKraken[index][0] %></th>
-                                <td><%= dataKraken[index][1] %></td>
-                                <td><%= new Date(dataKraken[index][2]) %></td>
-                                <td><%= dataKraken[index][3] %></td>
+                                <th scope="row"><%= dataKraken[indexK]["Price"] %></th>
+                                <td><%= dataKraken[indexK]["Volume"] %></td>
+                                <td><%= new Date( dataKraken[indexK]["Timestamp"].split('.')[0] * 1000) %></td>
+                                <td><%= dataKraken[indexK]["Method"] %></td>
                             </tr>
                             <% } %>
                         </tbody>
@@ -64,4 +65,4 @@
         </div>
     </div>
 </div>
-<% include struct/footer.ejs %>
+<%- include(rootPath + 'struct/footer.ejs') -%>
