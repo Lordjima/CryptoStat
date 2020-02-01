@@ -21,4 +21,11 @@ const KrakenSchema = mongoose.Schema({
 
 const KrakenData = db.model("KrakenData", KrakenSchema);
 
-module.exports = {BitfinexData,  KrakenData};
+const RatesSchema = mongoose.Schema({
+    Symbole: String,
+    Price: Number
+});
+
+const RatesData = db.model("Rates", RatesSchema);
+
+module.exports = {BitfinexData,  KrakenData, RatesData};

@@ -1,6 +1,7 @@
 const express = require("express");
 const bitfinex = require("../models/Crypto").BitfinexData;
 const kraken = require("../models/Crypto").KrakenData;
+const Rates = require("../models/Crypto").RatesData;
 const https = require('https');
 
 const router = express.Router();
@@ -20,7 +21,6 @@ router.post('/bitfinex', (req, res) => {
             const prices = result.map( item => {
                 return item;
             });
-            console.log(prices);
             prices.forEach( price => {
                 const crypto = new bitfinex({
                     Timestamp: price[0],
@@ -41,6 +41,41 @@ router.post('/bitfinex', (req, res) => {
                     });
             });
             res.status(201).json(result);
+        });
+    });
+
+});
+
+router.post('/bitfinex/rates', (req, res) => {
+
+    let urlBitfinexRates = "https://api-pub.bitfinex.com/v2/tickers?symbols=ALL";
+
+    let config = {method: "GET", headers: { accept: "application/json" } };
+
+    https.get(urlBitfinexRates, config, function (res1) {
+        let data = "";
+        res1.on('data', function(content){
+            data+= content;
+        });
+        res1.on("end", function () {
+            const result = JSON.parse(data);
+            const rates = result.map( item => {
+                return item;
+            });
+            rates.forEach( rate => {
+                if( rate[0].charAt(0) === 't'){
+                    Rates.updateOne({ Symbole: rate[0] }, { Symbole: rate[0], Price: rate[7] }, {upsert: true, setDefaultsOnInsert: true} )
+                        .then( () => console.log("ok"))
+                        .catch( error => {
+                            if ( error.Title === "ValidationError"){
+                                res.status(400).json(error.errors);
+                            } else {
+                                res.status(500);
+                            }
+                        });
+                }
+            });
+            res.status(201).json(rates);
         });
     });
 

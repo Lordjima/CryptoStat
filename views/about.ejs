@@ -1,4 +1,37 @@
 <% var rootPath = './'; %>
 <%- include(rootPath + 'struct/header.ejs') -%>
 <%- include(rootPath + 'struct/navbar.ejs') -%>
+<div class="container-fluid margin-top text-center">
+    <div class="row">
+        <!-- L'équipe -->
+        <div class="col-sm-12 my-4">
+            <div class="card">
+                <div class="card-body">
+                    <div class="container-fluid mb-4">
+                        <% for( var index = 0; index < rateList.length; index ){ %>
+                        <div class="row">
+                            <% for( var row = 0;  row < 6; row++ ){ %>
+                            <div class="col-sm-2 mt-4">
+                                <div class="card">
+                                    <div class="view overlay bg-blue">
+                                        <h3><%= rateList[index]["Symbole"].substr(1) %></h3>
+                                    </div>
+                                    <div class="card-body">
+                                        <p><%= rateList[index].Price + " " + rateList[index]["Symbole"].substr(4) %></p>
+                                    </div>
+                                </div>
+                            </div>
+                            <% index++
+                                if ( index >= rateList.length ){
+                                    break;
+                                }
+                            } %>
+                        </div>
+                        <% } %>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 <%- include(rootPath + 'struct/footer.ejs') -%>
