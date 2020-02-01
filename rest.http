@@ -11,3 +11,9 @@ Content-Type: application/json
 GET http://localhost:3000/crypto
 
 ###
+
+POST http://localhost:3000/cryptoStat/bitfinex/rates
+Content-Type: application/json
+
+###
+
