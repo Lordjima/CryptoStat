@@ -8,5 +8,5 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: root
     volumes:
-      - ./datas:/usr/local/datas
-    working_dir: /usr/local/datas
+      - ./data:/usr/local/data
+    working_dir: /usr/local/data

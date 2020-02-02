@@ -1,0 +1,1 @@
+{"options":{},"indexes":[{"v":{"$numberInt":"2"},"key":{"_id":{"$numberInt":"1"}},"name":"_id_","ns":"crypto.rates"}],"uuid":"a55368d4a42540c9ad27143f695ec988"}
