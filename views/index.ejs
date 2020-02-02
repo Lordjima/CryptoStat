@@ -1,5 +1,6 @@
-<% include struct/header.ejs %>
-<% include struct/navbar.ejs %>
+<% var rootPath = './'; %>
+<%- include(rootPath + 'struct/header.ejs') -%>
+<%- include(rootPath + 'struct/navbar.ejs') -%>
 <!-- Carousel -->
 <div id="carousel-example-1z" class="carousel slide carousel-fade" data-ride="carousel">
     <ol class="carousel-indicators">
@@ -64,4 +65,4 @@
         <div class="col-sm"></div>
     </div>
 </div>
-<% include struct/footer.ejs %>
+<%- include(rootPath + 'struct/footer.ejs') -%>

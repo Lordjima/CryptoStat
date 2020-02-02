@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const path = require('path');
+const cryptoRouter = require("./routes/cryptoStat");
 
 const app = express();
 const port = 3000;
@@ -12,11 +13,12 @@ const {getCryptoPage} = require('./routes/crypto');
 
 // CONFIG
 app.set('port', port); // set express to use this port
-app.set('views', __dirname + '/views'); // set express to look in this folder to render our view
+app.set('views', ['./views', './views/struct/']); // set express to look in this folder to render our view
 app.set('view engine', 'ejs'); // configure template engine
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json()); // parse form data client
 app.use(express.static(path.join(__dirname, '/'))); // configure express to use public folder
+app.use('/cryptoStat', cryptoRouter);
 
 app.get('/', getIndexPage);
 app.get('/about', getAboutPage);
